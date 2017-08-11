@@ -18,14 +18,17 @@ import functools
 try:
     assert sys.version_info >= (2,6)
 except AssertionError:
-    raise SystemExit("Ce jeu ne supporte pas Python {}. Installer une version supérieure pour le faire tourner.".format(platform.python_version()))
+    raise SystemExit("Ce programme ne supporte pas Python {}. Installer une version supérieure pour le faire tourner.".format(platform.python_version()))
 
 try:
     from pymouse import PyMouse
     import speech_recognition as sr
 except ImportError:
     import subprocess
-    subprocess.run(["pip", "install", "-r", "requirements.txt"])
+    if sys.version_info >= (3,5):
+        subprocess.run(["pip", "install", "-r", "requirements.txt"])
+    else:
+        subprocess.call("pip install -r requirements.txt", shell=True)
     raise SystemExit()
 
 
@@ -34,7 +37,7 @@ if os.path.exists("speech_coord.txt"):
         data = f.read()
     config_list = [line.split() for line in data.splitlines()]
 
-print(config_list)
+#print(config_list)
 
 def end_timer(time_start):
     """Afficher le temps écoulé en format hh:mm:ss.
@@ -68,6 +71,7 @@ class Recognition(object):
         .. seealso:: speech_recognition(module)
         """
 
+        self.commands = ['next','stop']
         self.sample_list = []
         self.sample = ''
         self.time_start = timeit.default_timer()
@@ -104,7 +108,8 @@ class Recognition(object):
             self.sample = recognizer.recognize_google(audio)
             self.logger.info("Google Speech Recognition thinks you said " + self.sample)
         except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
+            #print("Google Speech Recognition could not understand audio")
+            pass
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
@@ -126,7 +131,7 @@ class Recognition(object):
             self.exit = True
             self.time_elapsed = end_timer(self.time_start)
 
-        self.sample_list.append(self.sample)
+        if self.sample in self.commands: self.sample_list.append(self.sample)
         self.sample = ''
 
     def logging_config(self):
