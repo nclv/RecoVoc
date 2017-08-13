@@ -23,11 +23,11 @@ Si les modules Python nécessaires ne sont pas installés, le lancement de ```sp
 Si ```pip``` n'est pas reconnu que l'erreur renvoyée est de type: ```'python pip' is not recognized as an internal or external command, operable program or batch file.```, voir [pip is not recognized](https://github.com/Langoor2/PokemonGo-Map-FAQ/wiki/%27python---pip%27-is-not-recognized-as-an-internal-or-external-command,-operable-program-or-batch-file) pour ajouter le répertoire ```Scripts``` de votre répertoire Python au ```path```.  
 ***
 En cas d'erreurs lors de l'utilisation de type ```pcm_dmix```, suivre la procédure suivante.  
-_Create a file called /etc/modprobe.d/default.conf with this content:
+*Create a file called /etc/modprobe.d/default.conf with this content:*
 ```
 options snd_hda_intel index=1
 ```
-Then reboot._
+*Then reboot.*
 
 ## Description
 Un micro est nécessaire à la reconnaissance vocale.
