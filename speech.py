@@ -28,7 +28,7 @@ except ImportError:
     if sys.version_info >= (3,5):
         subprocess.run(["pip", "install", "-r", "requirements.txt"])
     else:
-        subprocess.call("pip install -r requirements.txt", shell=True)
+        subprocess.call("pip install -r requirements.txt", shell=False)
     raise SystemExit()
 
 
