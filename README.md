@@ -9,10 +9,13 @@
 
 ## Status
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cd632423fed43b3be7294659e4ab71e)](https://www.codacy.com/app/NicovincX2/Battleship?utm_source=github.com&utm_medium=referral&utm_content=NicovincX2/Battleship&utm_campaign=badger)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)]
+[![Supported Versions](https://img.shields.io/badge/python-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)]
+
 
 ## Installation
 Les versions de Python inférieures à Python3 ne sont pas supportées.  
-Pour installer les modules utilisés dans le programme, voir tout d'abord les dépendances du module ```SpeechRecognition``` [ici](https://github.com/Uberi/speech_recognition#requirements), ainsi que celles du module ```pyttsx``` [ici](http://pyttsx.readthedocs.io/en/latest/install.html) sur Windows.  
+Pour installer les modules utilisés dans le programme, voir tout d'abord les dépendances du module ```SpeechRecognition``` [ici](https://github.com/Uberi/speech_recognition#requirements), ainsi que celles du module ```pyttsx3``` [ici](http://pyttsx.readthedocs.io/en/latest/install.html) sur Windows.  
 Exécuter ensuite la commande qui suit pour installer les modules Python.
 ```python
 pip3 install -r requirements.txt
