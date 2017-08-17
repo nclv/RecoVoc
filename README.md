@@ -6,15 +6,16 @@
 ![License](https://img.shields.io/badge/license-GPLv3-blue.svg)
 ![Supported Versions](https://img.shields.io/badge/python-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)
 
-## Installation 
-Pour installer les modules utilisés dans le programme, voir tout d'abord les dépendances du module ```SpeechRecognition``` [ici](https://github.com/Uberi/speech_recognition#requirements), ainsi que celles du module ```pyttsx3``` [ici](http://pyttsx.readthedocs.io/en/latest/install.html) sur Windows.  
+## Installation  
 Sur la ligne de commande:
 ```bash
 pip3 install -r requirements.txt
 ```  
-En cas d'erreur lors de l'installation du module ```pyuserinput```, consulter la [liste](https://github.com/SavinaRoja/PyUserInput#dependencies) de dépendances de ce package.  
+En cas d'erreur lors de l'installation consulter la liste de dépendances des modules utilisés.  
+- [liste](https://github.com/SavinaRoja/PyUserInput#dependencies)
+- [SpeechRecognition](https://github.com/Uberi/speech_recognition#requirements)
+- [pyttsx3](http://pyttsx.readthedocs.io/en/latest/install.html)
  
-
 En cas d'erreurs lors de l'utilisation de type ```pcm_dmix``` sous Linux, suivre la procédure suivante.
 
 *Create a file called /etc/modprobe.d/default.conf with this content:*
