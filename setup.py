@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
 import os
+import sys
 import io
 
+from setuptools import setup, find_packages
+
 import speech
+
+# Vérification de la version de l'installation
+try:
+    assert sys.version_info >= (3,0)
+except AssertionError:
+    raise SystemExit("Ce programme ne supporte pas Python {}. Installer une version supérieure pour le faire tourner.".format(platform.python_version()))
+
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -28,19 +37,24 @@ setup(
     version=speech.__version__,
     description="Reconnaissance vocale.",
     long_description=long_description,
-    license="GPLv3",
-    author="Nicolas Vincent",
+    license=speech.__licence__,
+    author=speech.__author__,
     author_email='nicolas.vincent100@gmail.com',
     url='https://github.com/NicovincX2/RecoVoc',
-    install_requires=['pyuserinput','speech_recognition'],
+    install_requires=['pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
     packages=find_packages(exclude=['docs']),
     include_package_data=True,
     classifiers=[
-        "Programming Language :: Python :: 3.6",
         "Development Status :: 2 - Pre-Alpha",
-        "Topic :: Home Automation",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Natural Language :: French",
         "Operating System :: OS Independent"
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Topic :: Home Automation",
+        "Topic :: Multimedia :: Sound/Audio :: Speech",
     ],
 )

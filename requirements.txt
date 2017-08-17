@@ -1,3 +1,4 @@
 pyuserinput
 pyaudio
 SpeechRecognition
+pyttsx3
