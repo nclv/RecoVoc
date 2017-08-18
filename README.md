@@ -10,7 +10,7 @@
 ## Installation  
 Sur la ligne de commande:
 ```bash
-pip3 install -r requirements.txt
+python3 setup.py install
 ```  
 En cas d'erreur lors de l'installation consulter la liste de dépendances des modules utilisés.  
 - [liste](https://github.com/SavinaRoja/PyUserInput#dependencies)
@@ -26,6 +26,8 @@ options snd_hda_intel index=1
 *Then reboot.*
 
 ## Description
+
+# Fichiers
 
 ## Download
 

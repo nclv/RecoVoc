@@ -9,7 +9,6 @@ __licence__ = "GPLv3"
 
 import os
 import sys
-import platform
 import time
 import timeit #timer
 import logging
@@ -21,7 +20,6 @@ import utils
 
 try:
     from pymouse import PyMouse
-    import pyaudio
     import speech_recognition as sr
     import pyttsx3
 except ImportError as e:
@@ -59,6 +57,7 @@ class Recognition(object):
 
         self.language, self.wit_key = self.choose_lang()
 
+        self.reco_services = self.choose_services()
         self.commands = ['next','stop']
         self.sample_history = []
         self.time_start = timeit.default_timer()
@@ -69,7 +68,11 @@ class Recognition(object):
         recogniz = sr.Recognizer()
         micro = sr.Microphone()
         with micro as source:
-            recogniz.adjust_for_ambient_noise(source)  # we only need to calibrate once, before we start listening
+            self.say(self.messages["calibrating"])
+            recogniz.adjust_for_ambient_noise(source, duration=1)  # we only need to calibrate once, before we start listening
+            # Evite de nombreux faux-négatifs (détecte à 5 fois du volume ambiant)
+            recogniz.dynamic_energy_ratio = 5 # Premier mot prononcé fort pour atteindre le niveau de déclenchement
+            time.sleep(1)
             self.say(self.messages["start"])
 
         # start listening in the background (note that we don't have to do this inside a `with` statement)
@@ -107,15 +110,35 @@ class Recognition(object):
 
         # Initialisation de la liste des transcriptions
         self.sample_list = [u'', u'']
+
+        if self.reco_services is '1':
+            self.reco_google(recognizer, audio)
+        elif self.reco_services is '2':
+            self.reco_wit(recognizer, audio)
+        else:
+            self.reco_google(recognizer, audio)
+            self.reco_wit(recognizer, audio)
+
+        # Enlève les strings vides
+        self.sample_list = list(filter(None, self.sample_list))
+
+    def reco_google(self, recognizer, audio):
+        """Reconnaissance vocale avec les services de Google.
+        """
+
         # Recognize audio data using Google Speech Recognition
         try:
             self.sample_list[0] = recognizer.recognize_google(audio, language=self.language)
             self.logger.info("Google Speech Recognition : " + self.sample_list[0])
         except sr.UnknownValueError:
-            #print(self.messages["google_understand"])
+            print(self.messages["google_understand"])
             pass
         except sr.RequestError as e:
             print(self.messages["google_request"].format(e))
+
+    def reco_wit(self, recognizer, audio):
+        """Reconnaissance vocale avec les services de Wit.ai.
+        """
 
         # Recognize with WIT.ai
         try:
@@ -124,11 +147,8 @@ class Recognition(object):
         except sr.UnknownValueError:
             print(self.messages["wit_understand"])
         except sr.RequestError as e:
-            #print(self.messages["wit_request"].format(e))
+            print(self.messages["wit_request"].format(e))
             pass
-
-        # Enlève les strings vides
-        self.sample_list = list(filter(None, self.sample_list))
 
     def check_audio(self):
         """Vérifie que la reconnaissance entre les différentes API retourne la même chose.
@@ -169,7 +189,7 @@ class Recognition(object):
 
         self.voiceEngine.say(mess)
         self.voiceEngine.runAndWait()
-    
+
     def mouse_actions(self):
         """Prise en charge des commandes d'interaction avec la souris.
 
@@ -186,6 +206,17 @@ class Recognition(object):
             self.time_elapsed = utils.end_timer(self.time_start)
 
         if self.sample_list[0] in self.commands: self.sample_history.append(self.sample_list[0])
+
+    @utils.while_true
+    def choose_services(self):
+        """Choix du service de reconnaissance vocale.
+        """
+
+        service = input("Voulez vous utiliser les services de Google (1), ceux de Wit.ai (2) ou les deux simultanéments (3) ?\n>> ")
+        if service not in ['1', '2', '3']:
+            raise ValueError("Entrer 1, 2 ou 3.")
+
+        return service
 
     @utils.while_true
     def choose_lang(self):

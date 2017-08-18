@@ -14,6 +14,7 @@ mess_fr = {
     "diff_understand": TextBlob("Les différents services de reconnaissance n'ont pas compris la même chose."),
     "check_one_audio": TextBlob("Avez-vous voulu dire {} ?"),
     "check_none_audio": TextBlob("Avez-vous voulu dire une des sentences suivantes ?"),
+    "calibrating": TextBlob("Attendez s'il vous plait. Calibration du microphone...")
 }
 
 try:

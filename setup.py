@@ -3,6 +3,7 @@
 
 import os
 import sys
+import platform
 import io
 
 from setuptools import setup, find_packages
