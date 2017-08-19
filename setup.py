@@ -42,7 +42,7 @@ setup(
     author=speech.__author__,
     author_email='nicolas.vincent100@gmail.com',
     url='https://github.com/NicovincX2/RecoVoc',
-    install_requires=['pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
+    install_requires=['textblob', 'pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
     packages=find_packages(exclude=['docs']),
     include_package_data=True,
     classifiers=[

@@ -1,3 +1,4 @@
+textblob
 pyuserinput
 pyaudio
 SpeechRecognition

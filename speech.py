@@ -14,11 +14,11 @@ import timeit #timer
 import logging
 import itertools
 
-import messages
 import utils
 
 
 try:
+    import messages #Textblob
     from pymouse import PyMouse
     import speech_recognition as sr
     import pyttsx3
@@ -52,7 +52,7 @@ class Recognition(object):
         .. seealso:: speech_recognition(module)
         """
         # Initialisation de pyttsx3, conservation des changements (rate, language) pour la fonction say()
-        self.voiceEngine = pyttsx3.init()
+        self.voiceEngine = pyttsx3.init('espeak')
         self.voiceEngine.setProperty('rate', self.voiceEngine.getProperty('rate')-40)
 
         self.language, self.wit_key = self.choose_lang()
