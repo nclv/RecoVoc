@@ -36,6 +36,10 @@ options snd_hda_intel index=1
 *Then reboot.*
 
 ## Description
+ - Sur un portable, garder le volume de votre appareil en dessous d'une certaine limite à déterminer pour éviter les fausses détection vocales liées au retour d'audio.
+ - Les frappes du clavier peuvent être détectées par Wit.ai dans la version anglaise du programme.
+
+ On constate quelquefois une interprétation erronée de bruit par Wit.ai alors que Google ne comprends pas l'audio. Il peut alors être souhaitable de modifier le paramètre ```recogniz.dynamic_energy_ratio = 5``` vers une valeur plus élevée.
 
 ### Fichiers
  - ```speech.py```: Code de base à exécuter.

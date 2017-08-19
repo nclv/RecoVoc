@@ -3,7 +3,7 @@
 
 """speech.py: Programme de reconnaissance vocale."""
 
-__version__='0.1.0'
+__version__='1.0.0'
 __author__ = "VINCENT Nicolas"
 __licence__ = "GPLv3"
 
@@ -72,7 +72,7 @@ class Recognition(object):
             recogniz.adjust_for_ambient_noise(source, duration=1)  # we only need to calibrate once, before we start listening
             # Evite de nombreux faux-négatifs (détecte à 5 fois du volume ambiant)
             recogniz.dynamic_energy_ratio = 5 # Premier mot prononcé fort pour atteindre le niveau de déclenchement
-            time.sleep(1)
+            time.sleep(2)
             self.say(self.messages["start"])
 
         # start listening in the background (note that we don't have to do this inside a `with` statement)
@@ -212,9 +212,9 @@ class Recognition(object):
         """Choix du service de reconnaissance vocale.
         """
 
-        service = input("Voulez vous utiliser les services de Google (1), ceux de Wit.ai (2) ou les deux simultanéments (3) ?\n>> ")
+        service = input(self.messages["choose_service"] + ' ')
         if service not in ['1', '2', '3']:
-            raise ValueError("Entrer 1, 2 ou 3.")
+            raise ValueError(self.messages["verif_service"])
 
         return service
 
@@ -231,8 +231,10 @@ class Recognition(object):
             self.messages = messages.mess_fr
         elif choice.lower() in ["english", "en"]:
             LANGAGE="en-GB"
+            self.voiceEngine.setProperty('voice', 'english-us')
             WIT_key = "3AIMEB635MFDOXYCXGG2IVOQ5T4GNR2W"
-            self.messages = messages.mess_en
+            print("Translating ...")
+            self.messages = messages.trans_fr_en()
         else:
             raise ValueError("Entrer une langue supportée.")
 
