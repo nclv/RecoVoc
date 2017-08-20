@@ -5,10 +5,11 @@ python:
   - "3.5"
   - "3.6"
 # command to install dependencies
-install:
+before_install:
   - sudo apt-get build-dep python-pygame
   - sudo apt-get install python-dev
   - sudo apt-get install portaudio19-dev
+install:
   - pip3 install -r requirements.txt
 # command to run tests
-script: pytest
+script: make test
