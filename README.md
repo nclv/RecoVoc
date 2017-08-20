@@ -3,7 +3,8 @@
 <img align="center" src="recovoc.png">
 
 ## Status
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cd632423fed43b3be7294659e4ab71e)](https://www.codacy.com/app/NicovincX2/Battleship?utm_source=github.com&utm_medium=referral&utm_content=NicovincX2/Battleship&utm_campaign=badger)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/96eaf2654ab046aa8b58da549de20472)](https://www.codacy.com/app/NicovincX2/RecoVoc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NicovincX2/RecoVoc&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/96eaf2654ab046aa8b58da549de20472)](https://www.codacy.com/app/NicovincX2/RecoVoc?utm_source=github.com&utm_medium=referral&utm_content=NicovincX2/RecoVoc&utm_campaign=Badge_Coverage)
 ![License](https://img.shields.io/badge/license-GPLv3-blue.svg)
 ![Supported Versions](https://img.shields.io/badge/python-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)
 
@@ -23,7 +24,7 @@ En cas d'erreur lors de l'installation consulter la liste de dépendances des mo
 - [pyttsx3](http://pyttsx.readthedocs.io/en/latest/install.html)
 
 Pour utiliser les options vidéos, le module ```ffmpeg``` est nécessaire. Sur Windows, le télécharger sur leur site officiel et suivre les instructions d'installation.  
-Sur Linux: 
+Sur Linux:
 ```bash
 apt install ffmpeg
 ```
