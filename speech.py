@@ -15,6 +15,7 @@ import logging
 import itertools
 
 import utils
+import camera
 
 
 try:
@@ -27,14 +28,6 @@ except ImportError as e:
     import subprocess
     subprocess.run(["pip3", "install", "-r", "requirements.txt"])
     raise SystemExit()
-
-
-if os.path.exists("speech_coord.txt"):
-    with open("speech_coord.txt", 'r') as f:
-        data = f.read()
-    config_list = [line.split() for line in data.splitlines()]
-
-#print(config_list)
 
 
 class Recognition(object):
@@ -58,6 +51,7 @@ class Recognition(object):
         self.language, self.wit_key = self.choose_lang()
 
         self.reco_services = self.choose_services()
+        # TODO: Put in a dict in messages.py
         self.commands = ['next','stop']
         self.sample_history = []
         self.time_start = timeit.default_timer()

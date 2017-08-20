@@ -5,6 +5,35 @@
 
 import functools
 import timeit
+import os
+
+class Directory_commands(object):
+
+    def __init__(self):
+        """Initialisation des variables.
+        """
+
+        self.current_directory = os.path.dirname(os.path.realpath(__file__))
+
+    def check_directory_exist(self, dir_name):
+        """Vérifie que le répertoire "name" est un sous-répertoire de l'emplacement actuel du programme.
+        Args:
+            dir_name (str): Nom du répertoire.
+        """
+
+        if not os.path.exists(self.current_directory + dir_name):
+            os.makedirs(self.current_directory + dir_name)
+
+    def remove_all_directory(self, dir_name, end=".png"):
+        """Remove all the files in a directory.
+        Args:
+            dir_name (str): Nom du répertoire.
+        """
+
+        os.chdir(self.current_directory + dir_name)
+        filelist = [f for f in os.listdir(".") if f.endswith(end)]
+        for f in filelist: os.remove(f)
+        os.chdir(self.current_directory)
 
 def while_true(func):
     """ Décore la fonction d'une boucle while True pour les inputs.

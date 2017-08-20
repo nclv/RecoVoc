@@ -42,14 +42,14 @@ setup(
     author=speech.__author__,
     author_email='nicolas.vincent100@gmail.com',
     url='https://github.com/NicovincX2/RecoVoc',
-    install_requires=['textblob', 'pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
-    packages=find_packages(exclude=['docs']),
+    install_requires=['textblob', 'pygame', 'pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
+    packages=find_packages(exclude=['docs', 'Images', 'Snaps', 'Videos']),
     include_package_data=True,
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Natural Language :: French",
-        "Operating System :: OS Independent"
+        "Operating System :: POSIX :: Linux"
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",

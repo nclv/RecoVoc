@@ -22,6 +22,12 @@ En cas d'erreur lors de l'installation consulter la liste de dépendances des mo
 - [SpeechRecognition](https://github.com/Uberi/speech_recognition#requirements)
 - [pyttsx3](http://pyttsx.readthedocs.io/en/latest/install.html)
 
+Pour utiliser les options vidéos, le module ```ffmpeg``` est nécessaire. Sur Windows, le télécharger sur leur site officiel et suivre les instructions d'installation.  
+Sur Linux: 
+```bash
+apt install ffmpeg
+```
+
 # Installation  
 Sur la ligne de commande:
 ```bash
@@ -45,14 +51,21 @@ options snd_hda_intel index=1
  - ```speech.py```: Code de base à exécuter.
  - ```messages.py```: Messages de l'application.
  - ```utils.py```: Fonctions utiles.
+ - ```camera.py```: Intégration de la caméra.
  - ```recovoc.log```: Log des actions via le module logging.
+
+### Dossiers
+ - ```Images```: Images prises par la camera, ```cap-default``` sera écrasée si ```new=False```.
+ - ```Snaps```: Images nécessaires à la création d'une vidéo, elles sont écrasées avant une nouvelle vidéo.
+ - ```Videos```: Même fonctionnement que pour le dossier ```Images```.
 
 ## Download
 
 ## Credits
-
 Ce programme utilise les modules Python suivants:
 
  - [SpeechRecognition](https://github.com/Uberi/speech_recognition)
  - [PyUserInput](https://github.com/SavinaRoja/PyUserInput)
  - [pytssx3](https://github.com/nateshmbhat/pyttsx3)
+ - [textblob](https://github.com/sloria/TextBlob)
+ - [pygame](https://github.com/pygame/)
