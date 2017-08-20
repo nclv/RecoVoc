@@ -39,11 +39,10 @@ class Webcam(object):
 
         pygame.init()
         pygame.camera.init()
-
-        self.infoObject = pygame.display.Info()
-        # Taille de l'écran
-        #self.cam = pygame.camera.Camera(self.source, (self.infoObject.current_w, self.infoObject.current_h))
-        self.cam = pygame.camera.Camera(self.source, (640, 480))
+        camlist = pygame.camera.list_cameras()
+        if not camlist:
+            raise ValueError("Sorry, no cameras detected.")
+        self.cam = pygame.camera.Camera(camlist[0], (640, 480))
 
     def capture(self, new=False):
         """Screenshot format .jpeg.
@@ -73,7 +72,7 @@ class Webcam(object):
             pygame.display.update()
 
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self.done_capturing = True
         self.cam.stop()
 
@@ -99,7 +98,7 @@ class Webcam(object):
             pygame.image.save(image, filename)
 
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self.done_capturing = True
         self.cam.stop()
 

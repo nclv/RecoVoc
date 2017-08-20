@@ -11,5 +11,8 @@ before_install:
   - sudo apt-get install portaudio19-dev
 install:
   - pip3 install -r requirements.txt
+  - pip3 install coverage coveralls
 # command to run tests
-script: python3 camera.py
+script: coverage run camera.py
+after_sucess:
+  coveralls
