@@ -5,6 +5,7 @@ import os
 import sys
 import platform
 import io
+import apt
 
 from setuptools import setup, find_packages
 from setuptools.command.install import install
@@ -17,7 +18,20 @@ here = os.path.abspath(os.path.dirname(__file__))
 class CustomInstallCommand(install):
     """Customized setuptools install command."""
     def run(self):
-        os.system("apt install python-dev portaudio19-dev python3-pip python-xlib")
+        """Installation des dépendances.
+        """
+
+        # First of all, open the cache
+        cache = apt.Cache()
+        # Now, lets update the package list
+        cache.update()
+        # We need to re-open the cache because it needs to read the package list
+        cache.open(None)
+        my_selected_packages = [cache["python-dev"], cache["portaudio19-dev"]]
+        with cache.actiongroup():
+            for package in my_selected_packages:
+                package.mark_install()
+
         install.run(self)
 
 def read(*filenames, **kwargs):

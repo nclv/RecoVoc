@@ -4,6 +4,7 @@
 """camera.py: Fonctions et classes d'action de la camera."""
 
 import os
+import subprocess
 
 import pygame
 import pygame.camera
@@ -110,11 +111,11 @@ class Webcam(object):
         """
 
         if not new:
-            os.system("ffmpeg -r 8 -f image2 -i {0}/Snaps/%04d.png -codec:v libx264 \
-                      -preset medium -crf 22 -codec:a \
-                      copy -loglevel quiet -y {0}/Videos/result_default.avi".format(self.dir))
+            subprocess.call(["ffmpeg", "-r", "8", "-f", "image2", "-i", "{0}/Snaps/%04d.png".format(self.dir),
+                             "-codec:v", "libx264", "-preset", "medium", "-crf", "22", "-codec:a", "copy",
+                             "-loglevel", "quiet", "-y", "{0}/Videos/result_default.avi".format(self.dir)])
         else:
-            os.system("ffmpeg -r 8 -f image2 -i {1}/Snaps/%04d.png -codec:v libx264 \
-                      -preset medium -crf 22 -codec:a \
-                      copy -loglevel quiet -y {1}/Videos/result-{0}.avi".format(Webcam.vid_num, self.dir))
+            subprocess.call(["ffmpeg", "-r", "8", "-f", "image2", "-i", "{0}/Snaps/%04d.png".format(self.dir),
+                             "-codec:v", "libx264", "-preset", "medium", "-crf", "22", "-codec:a", "copy",
+                             "-loglevel", "quiet", "-y", "{0}/Videos/result-{1}.avi".format(self.dir, Webcam.vid_num)])
             Webcam.vid_num += 1

@@ -4,7 +4,7 @@
 """test_camera.py: Tests du module Camera.
 """
 
-from .context import recovoc
+from context import recovoc
 from recovoc.camera import Webcam
 
 import unittest

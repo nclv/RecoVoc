@@ -1,6 +1,5 @@
 textblob
 pyuserinput
-pyautogui
 pygame
 pyaudio
 SpeechRecognition
