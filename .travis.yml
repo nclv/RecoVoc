@@ -6,7 +6,7 @@ python:
   - "3.6"
 # command to install dependencies
 before_install:
-  - sudo apt-get install python-dev
+  - sudo apt-get install python-dev python3-pip
   - sudo apt-get install portaudio19-dev
 install:
   - pip3 install -r requirements.txt
