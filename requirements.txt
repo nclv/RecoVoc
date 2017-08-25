@@ -1,6 +1,5 @@
 textblob
 pyuserinput
-python-xlib
 pyautogui
 pygame
 pyaudio
