@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """speech.py: Programme de reconnaissance vocale."""
@@ -14,12 +14,12 @@ import timeit #timer
 import logging
 import itertools
 
-import utils
-import camera
+from recovoc import utils
+from recovoc import camera
 
 
 try:
-    import messages #Textblob
+    from recovoc import messages #Textblob
     from pymouse import PyMouse
     import speech_recognition as sr
     import pyttsx3
@@ -126,7 +126,6 @@ class Recognition(object):
             self.logger.info("Google Speech Recognition : " + self.sample_list[0])
         except sr.UnknownValueError:
             print(self.messages["google_understand"])
-            pass
         except sr.RequestError as e:
             print(self.messages["google_request"].format(e))
 
@@ -142,7 +141,6 @@ class Recognition(object):
             print(self.messages["wit_understand"])
         except sr.RequestError as e:
             print(self.messages["wit_request"].format(e))
-            pass
 
     def check_audio(self):
         """Vérifie que la reconnaissance entre les différentes API retourne la même chose.

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """utils.py: Fonctions utiles."""
@@ -9,11 +9,11 @@ import os
 
 class Directory_commands(object):
 
-    def __init__(self):
+    def __init__(self, here):
         """Initialisation des variables.
         """
 
-        self.current_directory = os.path.dirname(os.path.realpath(__file__))
+        self.current_directory = here
 
     def check_directory_exist(self, dir_name):
         """Vérifie que le répertoire "name" est un sous-répertoire de l'emplacement actuel du programme.

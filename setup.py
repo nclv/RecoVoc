@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -7,17 +7,18 @@ import platform
 import io
 
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 
-import speech
-
-# Vérification de la version de l'installation
-try:
-    assert sys.version_info >= (3,0)
-except AssertionError:
-    raise SystemExit("Ce programme ne supporte pas Python {}. Installer une version supérieure pour le faire tourner.".format(platform.python_version()))
+from recovoc import speech
 
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+class CustomInstallCommand(install):
+    """Customized setuptools install command."""
+    def run(self):
+        os.system("apt install python-dev portaudio19-dev")
+        install.run(self)
 
 def read(*filenames, **kwargs):
     """Lit plusieurs fichiers et les assemble.
@@ -42,8 +43,12 @@ setup(
     author=speech.__author__,
     author_email='nicolas.vincent100@gmail.com',
     url='https://github.com/NicovincX2/RecoVoc',
+    keywords='tts stt python3 speech-recognition',
     install_requires=['textblob', 'pygame', 'pyuserinput','pyaudio', 'SpeechRecognition', 'pyttsx3'],
-    packages=find_packages(exclude=['docs', 'Images', 'Snaps', 'Videos']),
+    python_requires='>=3.3',
+    packages=find_packages('recovoc', exclude=['Images', 'Snaps', 'Videos']),
+    package_dir={'': 'recovoc'},
+    cmdclass={'install': CustomInstallCommand},
     include_package_data=True,
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
@@ -58,4 +63,5 @@ setup(
         "Topic :: Home Automation",
         "Topic :: Multimedia :: Sound/Audio :: Speech",
     ],
+    test_suite='tests',
 )

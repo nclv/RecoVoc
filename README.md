@@ -5,6 +5,8 @@
 ## Status
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/96eaf2654ab046aa8b58da549de20472)](https://www.codacy.com/app/NicovincX2/RecoVoc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NicovincX2/RecoVoc&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/96eaf2654ab046aa8b58da549de20472)](https://www.codacy.com/app/NicovincX2/RecoVoc?utm_source=github.com&utm_medium=referral&utm_content=NicovincX2/RecoVoc&utm_campaign=Badge_Coverage)
+[![Code Health](https://landscape.io/github/NicovincX2/RecoVoc/master/landscape.svg?style=flat)](https://landscape.io/github/NicovincX2/RecoVoc/master)
+[![Build Status](https://travis-ci.org/NicovincX2/RecoVoc.svg?branch=master)](https://travis-ci.org/NicovincX2/RecoVoc)
 ![License](https://img.shields.io/badge/license-GPLv3-blue.svg)
 ![Supported Versions](https://img.shields.io/badge/python-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)
 
@@ -59,6 +61,13 @@ options snd_hda_intel index=1
  - ```Images```: Images prises par la camera, ```cap-default``` sera écrasée si ```new=False```.
  - ```Snaps```: Images nécessaires à la création d'une vidéo, elles sont écrasées avant une nouvelle vidéo.
  - ```Videos```: Même fonctionnement que pour le dossier ```Images```.
+
+### TODO
+- [x] Camera module tests
+- [ ] Camera module integration
+- [ ] speech.py tests
+- [ ] Sphinx Documentation
+- [ ] Travis build / Makefile test
 
 ## Download
 
