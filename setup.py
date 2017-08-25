@@ -27,7 +27,7 @@ class CustomInstallCommand(install):
         cache.update()
         # We need to re-open the cache because it needs to read the package list
         cache.open(None)
-        my_selected_packages = [cache["python-dev"], cache["portaudio19-dev"]]
+        my_selected_packages = [cache["python-dev"], cache["portaudio19-dev"], cache["python-apt"]]
         with cache.actiongroup():
             for package in my_selected_packages:
                 package.mark_install()
