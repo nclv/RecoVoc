@@ -17,7 +17,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 class CustomInstallCommand(install):
     """Customized setuptools install command."""
     def run(self):
-        os.system("apt install python-dev portaudio19-dev")
+        os.system("apt install python-dev portaudio19-dev python3-pip python-xlib")
         install.run(self)
 
 def read(*filenames, **kwargs):
