@@ -76,6 +76,12 @@ class Webcam(object):
             period (int): Durée de la video, 10 secondes par défaut.
         """
 
+        if saved:
+            try:
+                subprocess.check_call(["ffmpeg", "-loglevel", "quiet"])
+            except subprocess.CalledProcessError as e:
+                print("Le package ffmpeg est nécessaire à l'enregistrement de vidéos.")
+
         self.direct.remove_all_directory("/Snaps")
         self.cam.start()
         self.screen = pygame.display.set_mode((640, 480))
@@ -97,7 +103,7 @@ class Webcam(object):
 
             if seconds > period:
                 key.tap_key(key.escape_key)
-                print("Time elapse: ", seconds)
+                print("Time elapsed: ", seconds)
                 seconds = 0
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -110,12 +116,13 @@ class Webcam(object):
         """Cré la vidéo à partir des Images du dossier Snaps
         """
 
+        ffmpeg_command = ["ffmpeg", "-r", "8", "-f", "image2", "-i", "{0}/Snaps/%04d.png".format(self.dir),
+                         "-codec:v", "libx264", "-preset", "medium", "-crf", "22", "-codec:a", "copy",
+                         "-loglevel", "quiet", "-y", "{0}/Videos/result_default.avi".format(self.dir)]
+
         if not new:
-            subprocess.call(["ffmpeg", "-r", "8", "-f", "image2", "-i", "{0}/Snaps/%04d.png".format(self.dir),
-                             "-codec:v", "libx264", "-preset", "medium", "-crf", "22", "-codec:a", "copy",
-                             "-loglevel", "quiet", "-y", "{0}/Videos/result_default.avi".format(self.dir)])
+            subprocess.check_call(ffmpeg_command)
         else:
-            subprocess.call(["ffmpeg", "-r", "8", "-f", "image2", "-i", "{0}/Snaps/%04d.png".format(self.dir),
-                             "-codec:v", "libx264", "-preset", "medium", "-crf", "22", "-codec:a", "copy",
-                             "-loglevel", "quiet", "-y", "{0}/Videos/result-{1}.avi".format(self.dir, Webcam.vid_num)])
+            ffmpeg_command[-1] = "{0}/Videos/result-{1}.avi".format(self.dir, Webcam.vid_num)
+            subprocess.check_call(ffmpeg_command)
             Webcam.vid_num += 1

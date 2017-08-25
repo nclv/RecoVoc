@@ -7,7 +7,6 @@ __version__='1.0.0'
 __author__ = "VINCENT Nicolas"
 __licence__ = "GPLv3"
 
-import os
 import sys
 import time
 import timeit #timer
@@ -26,7 +25,7 @@ try:
 except ImportError as e:
     print(e)
     import subprocess
-    subprocess.run(["pip3", "install", "-r", "requirements.txt"])
+    subprocess.check_call(["pip3", "install", "-r", "requirements.txt"])
     raise SystemExit()
 
 

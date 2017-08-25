@@ -1,3 +1,5 @@
+# DEPRECATED, build fail on Xlib import
+
 language: python
 python:
   - "3.3"
@@ -6,7 +8,7 @@ python:
   - "3.6"
 # command to install dependencies
 before_install:
-  - sudo apt-get install python-dev python3-pip python-xlib libx11-dev
+  - sudo apt-get install python-dev python3-pip python-xlib python-apt
   - sudo apt-get install portaudio19-dev
 install:
   - pip3 install -r requirements.txt

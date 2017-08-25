@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
-import platform
 import io
 import apt
 
@@ -18,7 +16,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 class CustomInstallCommand(install):
     """Customized setuptools install command."""
     def run(self):
-        """Installation des dépendances.
+        """Installation des dépendances (Linux).
         """
 
         # First of all, open the cache
@@ -27,7 +25,8 @@ class CustomInstallCommand(install):
         cache.update()
         # We need to re-open the cache because it needs to read the package list
         cache.open(None)
-        my_selected_packages = [cache["python-dev"], cache["portaudio19-dev"], cache["python-apt"]]
+        my_selected_packages = [cache["python-dev"], cache["portaudio19-dev"],
+                                cache["python-apt"], cache["ffmpeg"]]
         with cache.actiongroup():
             for package in my_selected_packages:
                 package.mark_install()
