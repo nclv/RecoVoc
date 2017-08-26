@@ -25,7 +25,8 @@ try:
 except ImportError as e:
     print(e)
     import subprocess
-    subprocess.check_call(["pip3", "install", "-r", "requirements.txt"])
+    pip_install = ["pip3", "install", "-r", "requirements.txt"]
+    subprocess.check_call(pip_install)
     raise SystemExit()
 
 

@@ -76,12 +76,6 @@ class Webcam(object):
             period (int): Durée de la video, 10 secondes par défaut.
         """
 
-        if saved:
-            try:
-                subprocess.check_call(["ffmpeg", "-loglevel", "quiet"])
-            except subprocess.CalledProcessError as e:
-                print("Le package ffmpeg est nécessaire à l'enregistrement de vidéos.")
-
         self.direct.remove_all_directory("/Snaps")
         self.cam.start()
         self.screen = pygame.display.set_mode((640, 480))
