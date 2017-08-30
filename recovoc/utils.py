@@ -11,12 +11,16 @@ class Directory_commands(object):
 
     def __init__(self, here):
         """Initialisation des variables.
+
+        Args:
+            here (str): Emplacement des sauvegardes.
         """
 
         self.current_directory = here
 
     def check_directory_exist(self, dir_name):
         """Vérifie que le répertoire "name" est un sous-répertoire de l'emplacement actuel du programme.
+
         Args:
             dir_name (str): Nom du répertoire.
         """
@@ -26,8 +30,12 @@ class Directory_commands(object):
 
     def remove_all_directory(self, dir_name, end=".png"):
         """Remove all the files in a directory.
+
         Args:
             dir_name (str): Nom du répertoire.
+
+        Kwargs:
+            end (str): Extension de l'image à reconnaitre.
         """
 
         os.chdir(self.current_directory + dir_name)

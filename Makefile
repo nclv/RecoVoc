@@ -1,4 +1,4 @@
-TEST_PATH=./
+TEST_PATH=tests/
 
 init:
     python3 -m pip install -r requirements.txt

@@ -1,6 +1,8 @@
 textblob
 pyuserinput
 pygame
+pillow
+face_recognition
 pyaudio
 SpeechRecognition
 pyttsx3

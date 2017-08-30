@@ -3,10 +3,6 @@
 
 """speech.py: Programme de reconnaissance vocale."""
 
-__version__='1.0.0'
-__author__ = "VINCENT Nicolas"
-__licence__ = "GPLv3"
-
 import sys
 import time
 import timeit #timer
@@ -18,6 +14,7 @@ from recovoc import camera
 
 
 try:
+    print("Vérification des modules...")
     from recovoc import messages #Textblob
     from pymouse import PyMouse
     import speech_recognition as sr

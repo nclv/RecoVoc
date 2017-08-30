@@ -15,8 +15,15 @@ S'assurer d'avoir les différents modules installés ainsi que leur dépendances
 ```bash
 git clone https://github.com/NicovincX2/RecoVoc #Cloner le répertoire
 cd RecoVoc/
-python3 setup.py install #Pour l'installation des dépendances
-python3 speech.py #Pour lancer le programme
+python3 -m pip install -e . #Pour l'installation des dépendances et du package
+cd recovoc
+python3 launch.py #Pour lancer le programme
+```
+Exemple d'utilisation basique:  
+```python
+from recovoc import speech
+
+speech.Recognition()
 ```
 
 # Prérequis
@@ -30,6 +37,7 @@ Sur Linux:
 ```bash
 apt install ffmpeg
 ```
+Il est nécessaire aussi d'installer le module python ```cv2```. Il est nécessaire de le construire à partir des sources sur Linux. Voir [ici](https://breakthrough.github.io/Installing-OpenCV/) pour les instructions d'installation.
 
 # Installation  
 Sur la ligne de commande:
@@ -55,6 +63,8 @@ options snd_hda_intel index=1
  - ```messages.py```: Messages de l'application.
  - ```utils.py```: Fonctions utiles.
  - ```camera.py```: Intégration de la caméra.
+ - ```face_reco```: Reconnaissance faciale.
+ - ```launch.py```: Lancement du module.
  - ```recovoc.log```: Log des actions via le module logging.
 
 ### Dossiers
@@ -65,17 +75,21 @@ options snd_hda_intel index=1
 ### TODO
 - [x] Camera module tests
 - [ ] Camera module integration
+- [ ] Reconnaissance faciale.
 - [ ] speech.py tests
+
 - [ ] Sphinx Documentation
-- [ ] Travis build / Makefile test
+- [-] Travis build / Makefile test
 
 ## Download
 
 ## Credits
-Ce programme utilise les modules Python suivants:
+Ce programme utilise les modules Python suivants (sans mentionner leurs dépendances respectives):
 
  - [SpeechRecognition](https://github.com/Uberi/speech_recognition)
  - [PyUserInput](https://github.com/SavinaRoja/PyUserInput)
  - [pytssx3](https://github.com/nateshmbhat/pyttsx3)
  - [textblob](https://github.com/sloria/TextBlob)
  - [pygame](https://github.com/pygame/)
+ - [face_recognition](http://face-recognition.readthedocs.io/en/latest/readme.html)
+ - [pillow](https://pillow.readthedocs.io/en/4.2.x/)
