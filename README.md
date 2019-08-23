@@ -81,7 +81,7 @@ options snd_hda_intel index=1
 - [ ] Sphinx Documentation
 - [-] Travis build / Makefile test
 
-## Download
+<!-- ## Download -->
 
 ## Credits
 Ce programme utilise les modules Python suivants (sans mentionner leurs dépendances respectives):
